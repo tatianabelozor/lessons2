@@ -23,12 +23,12 @@ public class Developer {
         } else if (activity instanceof Training) {
             setActivity(new Coding());
         } else if (activity instanceof Coding) {
-            setActivity(new Reading());
-        } else if (activity instanceof Reading) {
-            setActivity(new Eating());
-        }else if(activity instanceof Eating){
             setActivity(new SendingCode());
-        }else if (activity instanceof SendingCode){
+        } else if (activity instanceof SendingCode) {
+            setActivity(new Reading());
+        }else if(activity instanceof Reading){
+            setActivity(new Eating());
+        }else if (activity instanceof Eating){
             setActivity(new Sleeping());
         }
     }

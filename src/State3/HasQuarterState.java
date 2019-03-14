@@ -5,7 +5,7 @@
  */
 package State3;
 
-import State2.GumballMachine;
+
 import java.util.Random;
 
 /**

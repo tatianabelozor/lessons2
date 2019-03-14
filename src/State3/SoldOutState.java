@@ -21,8 +21,13 @@ public class SoldOutState implements State {
         System.out.println("You cant't insert a quarter, the machine is sold out");
     }
     @Override 
-    public void ejectQuartet(){
+    public void ejectQuarter(){ 
         System.out.println("You cant't eject, you haven't inserted a quarter yet");
+    }
+    
+    @Override
+    public void turnCrank(){
+        System.out.println("You turned,but there are no gumballs");
     }
     @Override
     public void dispense(){

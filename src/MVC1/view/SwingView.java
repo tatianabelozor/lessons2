@@ -10,6 +10,7 @@ import MVC1.model.Model;
 import MVC1.controller.Controller;
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -51,5 +52,50 @@ public class SwingView implements ActionListener, View {
     @Override
     public void setModel(Model model) {
         list.setModel(new ModelWrapper(model));
+    }
+
+    @Override
+    public void show() {
+        SwingUtilities.invokeLater(() -> frame.setVisible(true));
+    }
+
+    private void initComponents() {
+        frame = new JFrame("List");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new FlowLayout());
+        frame.setSize(new Dimension(500, 150));
+        frame.setContentPane(mainPanel);
+
+        list = createList();
+        mainPanel.add(list);
+
+        field = createField();
+        mainPanel.add(field);
+
+        add = createButton("Add");
+        mainPanel.add(add);
+
+        remove = createButton("Remove");
+        mainPanel.add(remove);
+    }
+
+    private JButton createButton(String text) {
+        JButton button = new JButton(text);
+        button.addActionListener(this);
+        button.setEnabled(false);
+
+        return button;
+    }
+
+    private JTextField createField() {
+        JTextField textField = new JTextField(15);
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e
+            ) {
+                updateAddButtonState();
+            }
+        }
     }
 }
